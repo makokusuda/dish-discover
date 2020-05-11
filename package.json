@@ -1,0 +1,23 @@
+{
+  "name": "dishes-discover",
+  "version": "1.0.0",
+  "main": "./controllers/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./controllers/index.js",
+    "migrate": "knex migrate:latest --knexfile models/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile models/knexfile.js",
+    "makeMigration": "cd models && knex migrate:make",
+    "runMigration": "knex migrate:latest --knexfile models/knexfile.js",
+    "seed": "knex seed:run --knexfile models/knexfile.js",
+    "start:server": "nodemon ./controllers/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.21.1",
+    "nodemon": "^2.0.3",
+    "pg": "^8.1.0"
+  }
+}
