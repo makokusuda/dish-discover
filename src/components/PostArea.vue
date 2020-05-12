@@ -1,43 +1,45 @@
 <template>
-  <div class="post-area">
-    <a class="area-title">Post new dish</a>
-    <div>
+  <div>
+    <div class="post-area">
+      <a class="area-title">Post new dish</a>
       <div>
-        Name
-        <a class="mandatory-mark">*</a>
-        <input class="name-input" type="text" v-model="postName" />
+        <div>
+          Name
+          <a class="mandatory-mark">*</a>
+          <input class="name-input" type="text" v-model="postName" />
+        </div>
+        <div>
+          Genre
+          <a class="mandatory-mark">*</a>
+          <label class="genre" v-for="dish in genre" :key="dish">
+            <input type="radio" name="genre" :value="dish" v-model="postGenre" />
+            {{ dish }}
+          </label>
+        </div>
+        <div>
+          Category
+          <a class="mandatory-mark">*</a>
+          <label class="category" v-for="dish in category" :key="dish">
+            <input type="radio" name="category" :value="dish" v-model="postCategory" />
+            {{ dish }}
+          </label>
+        </div>
+        <div>
+          <a v-show="isCompleted">Error - Fill all fields!</a>
+        </div>
       </div>
       <div>
-        Genre
-        <a class="mandatory-mark">*</a>
-        <label class="genre" v-for="dish in genre" :key="dish">
-          <input type="radio" name="genre" :value="dish" v-model="postGenre" />
-          {{ dish }}
-        </label>
+        <button class="button-post" type="button" v-on:click="validation">Post</button>
+        <button class="button-post" type="button" v-on:click="clearForm">Clear</button>
       </div>
-      <div>
-        Category
-        <a class="mandatory-mark">*</a>
-        <label class="category" v-for="dish in category" :key="dish">
-          <input type="radio" name="category" :value="dish" v-model="postCategory" />
-          {{ dish }}
-        </label>
+      <div v-show="postError">Error happened! Try again</div>
+      <div v-show="isPosted" class="post-area">
+        <a class="area-title">Dish is added!</a>
+        <div>Name: {{ addedName }}</div>
+        <div>Genre: {{ addedGenre }}</div>
+        <div>Category: {{ addedCategory }}</div>
+        <button class="button-post" type="button" v-on:click="contentConfirm">Confirm</button>
       </div>
-      <div>
-        <a v-show="isCompleted">Error - Fill all fields!</a>
-      </div>
-    </div>
-    <div>
-      <button class="button-post" type="button" v-on:click="validation">Post</button>
-      <button class="button-post" type="button" v-on:click="clearForm">Clear</button>
-    </div>
-    <div v-show="postError">Error happened! Try again</div>
-    <div v-show="isPosted">
-      <a>Dish is added!</a>
-      <div>Name: {{ addedName }}</div>
-      <div>Genre: {{ addedGenre }}</div>
-      <div>Category: {{ addedCategory }}</div>
-      <button type="button" v-on:click="contentConfirm">Got it</button>
     </div>
   </div>
 </template>
@@ -141,6 +143,7 @@ export default {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
+  margin-bottom: 5px;
   padding-left: 8px;
   padding-right: 8px;
   outline: none;
