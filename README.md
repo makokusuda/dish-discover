@@ -44,3 +44,9 @@ yarn start:client
 ```
 
 Visit `http://localhost:8080/` to check the app
+
+###Create compile file to deploy to heroku
+
+```
+yarn vue-cli-service build
+```

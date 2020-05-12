@@ -1,11 +1,8 @@
 <template>
-  <div>
-    <h1>Dish info lookup app</h1>
+  <div class="top">
+    <h1>Discover Dishes!</h1>
     <PostArea :genre="this.genre" :category="this.category" />
-    <SearchArea
-      v-on:filter="updateResults"
-      v-on:optionsForPost="updateOptions"
-    />
+    <SearchArea v-on:filter="updateResults" v-on:optionsForPost="updateOptions" />
     <ResultArea :result="this.result" />
   </div>
 </template>
@@ -20,7 +17,7 @@ export default {
   components: {
     SearchArea: SearchArea,
     ResultArea: ResultArea,
-    PostArea: PostArea,
+    PostArea: PostArea
   },
   methods: {
     updateResults(data) {
@@ -29,14 +26,21 @@ export default {
     updateOptions(genre, category) {
       this.genre = genre;
       this.category = category;
-    },
+    }
   },
   data() {
     return {
       result: [],
       genre: [],
-      category: [],
+      category: []
     };
-  },
+  }
 };
 </script>
+
+<style scoped>
+.top {
+  margin: 0 auto;
+  width: 80%;
+}
+</style>
