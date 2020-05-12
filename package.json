@@ -10,14 +10,22 @@
     "makeMigration": "cd models && knex migrate:make",
     "runMigration": "knex migrate:latest --knexfile models/knexfile.js",
     "seed": "knex seed:run --knexfile models/knexfile.js",
-    "start:server": "nodemon ./controllers/index.js"
+    "start:server": "nodemon ./controllers/index.js",
+    "start:client": "vue-cli-service serve",
+    "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "nodemon": "^2.0.3",
-    "pg": "^8.1.0"
+    "pg": "^8.1.0",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.3.1",
+    "vue-template-compiler": "^2.6.11"
   }
 }
