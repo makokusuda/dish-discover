@@ -12,6 +12,7 @@
     "seed": "knex seed:run --knexfile models/knexfile.js",
     "start:server": "nodemon ./controllers/index.js",
     "start:client": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
