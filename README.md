@@ -2,14 +2,16 @@
 
 This was created during my time as a student at Code Chrysalis.
 
-##Project setup
-###Install dependencies
+## Project setup
+
+###### Install dependencies
 
 ```
 yarn
 ```
 
-###Local database
+###### Local database
+
 Create database
 
 ```
@@ -24,7 +26,8 @@ yarn runMigration
 yarn seed
 ```
 
-###Run app
+###### Run app
+
 Run the server
 
 ```
