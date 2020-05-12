@@ -4,13 +4,13 @@ This was created during my time as a student at Code Chrysalis.
 
 ## Project setup
 
-###### Install dependencies
+**Install dependencies**
 
 ```
 yarn
 ```
 
-###### Local database
+**Local database**
 
 Create database
 
@@ -26,7 +26,7 @@ yarn runMigration
 yarn seed
 ```
 
-###### Run app
+**Run app**
 
 Run the server
 
@@ -48,7 +48,7 @@ yarn start:client
 
 Visit `http://localhost:8080/` to check the app
 
-###Create compile file to deploy to heroku
+**Create compile file to deploy to heroku**
 
 ```
 yarn vue-cli-service build
