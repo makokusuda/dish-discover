@@ -2,6 +2,10 @@
   <div>
     Search area
     <div>
+      Name:
+      <input type="text" v-model="selectedName" />
+    </div>
+    <div>
       Genre:
       <label class="genre" v-for="dish in genre" :key="dish">
         <input type="checkbox" :value="dish" v-model="selectedGenre" />
@@ -30,11 +34,13 @@ export default {
   name: "SearchArea",
   async mounted() {
     const { data } = await axios.get("/api/dishes");
-    this.dishes = data;
+
+    this.dishes = data.slice().reverse();
     this.$emit("filter", this.dishes);
 
     this.genre = this.checkboxOption("genre");
     this.category = this.checkboxOption("category");
+    this.$emit("optionsForPost", this.genre, this.category);
   },
   methods: {
     checkboxOption(value) {
@@ -50,6 +56,7 @@ export default {
     clearFilter() {
       this.selectedCategory = [];
       this.selectedGenre = [];
+      this.selectedName = "";
       this.$emit("filter", this.dishes);
     },
   },
@@ -70,6 +77,10 @@ export default {
       if (this.selectedCategory.length > 0) {
         filterDishes(this.selectedCategory, "category");
       }
+
+      if (this.selectedName) {
+        filterDishes(this.selectedName, "name");
+      }
       return result;
     },
   },
@@ -78,6 +89,7 @@ export default {
       dishes: [],
       genre: [],
       category: [],
+      selectedName: "",
       selectedGenre: [],
       selectedCategory: [],
     };
