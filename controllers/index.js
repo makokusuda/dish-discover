@@ -4,9 +4,15 @@ const bodyParser = require("body-parser");
 // const environment = process.env.NODE_ENV || "development";
 const configration = require("../models/knexfile");
 const database = require("knex")(configration);
+const cors = require("cors");
+const serveStatic = require("serve-static");
+const path = require("path");
 
 const PORT = process.env.PORT || 3000;
 app.use(bodyParser());
+app.use(cors());
+
+app.use(serveStatic(path.join(__dirname, "../dist")));
 
 app.get("/api/dishes", async (req, res) => {
   try {
