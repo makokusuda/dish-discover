@@ -3,7 +3,7 @@
     <h1>Discover Dishes!</h1>
     <PostArea :genre="this.genre" :category="this.category" />
     <SearchArea v-on:filter="updateResults" v-on:optionsForPost="updateOptions" />
-    <ResultArea :result="this.result" />
+    <ResultArea :genre="this.genre" :category="this.category" :result="this.result" />
   </div>
 </template>
 

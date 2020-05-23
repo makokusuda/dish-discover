@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-// const environment = process.env.NODE_ENV || "development";
+
 const configration = require("../models/knexfile");
 const database = require("knex")(configration);
 const cors = require("cors");
@@ -46,14 +46,42 @@ app.post("/api/dishes", async (req, res) => {
   }
 });
 
+app.delete("/api/dishes/:id", async (req, res) => {
+  try {
+    const id = await database("dishes")
+      .where("id", req.params.id)
+      .del();
+
+    res.status(204).json({ id });
+  } catch (error) {
+    res.status(404).json({ error });
+  }
+});
+
+app.patch("/api/dishes/:id", async (req, res) => {
+  const dish = req.body;
+  try {
+    const id = await database("dishes")
+      .where("id", req.params.id)
+      .update({
+        name: dish.name,
+        genre: dish.genre,
+        category: dish.category,
+      });
+    res.status(204).json({ id });
+  } catch (error) {
+    res.status(404).json({ error });
+  }
+});
+
 app.get("/api/dishes/:genre", async (req, res) => {
   try {
     const dish = await database("dishes")
-      .where("genre", request.params.genre)
+      .where("genre", req.params.genre)
       .select();
 
     if (dish.length) {
-      res.status(200).json(dish);
+      res.status(200).json({ dish });
     } else {
       res.status(404).json({
         error: `Could not find dish with genre ${req.params.genre}`,

@@ -79,10 +79,7 @@ export default {
         .then(() => {
           this.isPosted = true;
         })
-        // .then(() => {
-        //   this.$emit("reload");
-        // })
-        .catsh(error => {
+        .catch(error => {
           this.postError = true;
         });
     },

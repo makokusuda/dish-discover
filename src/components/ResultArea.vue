@@ -1,21 +1,37 @@
 <template>
   <div class="container">
     <div v-if="result.length > 0">
-      <div class="card" v-for="dish in result" :key="dish.id">
-        <h3 class="name">{{ dish.name }}</h3>
-        <img class="image" src="../../public/ingredients.jpg" />
-        <div class="genre">Genre: {{ dish.genre }}</div>
-        <div class="category">Category: {{ dish.category }}</div>
-      </div>
+      <DishCard
+        :genre="genre"
+        :category="category"
+        v-for="dish in result"
+        :dish="dish"
+        :key="dish.id"
+        v-on:deleteDish="deleteDish"
+      />
     </div>
     <div v-else>No result</div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import DishCard from "./DishCard";
+
 export default {
   name: "ResultArea",
-  props: ["result"]
+  components: {
+    DishCard: DishCard
+  },
+  props: ["result", "genre", "category"],
+  methods: {
+    deleteDish(id) {
+      axios
+        .delete(`/api/dishes/${id}`)
+        .then(() => console.log("deleted"))
+        .catch(error => console.log(error));
+    }
+  }
 };
 </script>
 
