@@ -30,6 +30,9 @@ export default {
         .delete(`/api/dishes/${id}`)
         .then(() => console.log("deleted"))
         .catch(error => console.log(error));
+    },
+    updateDish() {
+      this.$emit("updateDish");
     }
   }
 };

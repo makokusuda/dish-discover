@@ -51,8 +51,11 @@ export default {
             genre: this.editGenre,
             category: this.editCategoty
           })
+          .then(res => {
+            console.log(res.config.data);
+          })
           .then(() => {
-            console.log("saved");
+            this.toggleEdit();
           });
       }
     },

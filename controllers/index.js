@@ -74,17 +74,17 @@ app.patch("/api/dishes/:id", async (req, res) => {
   }
 });
 
-app.get("/api/dishes/:genre", async (req, res) => {
+app.get("/api/dishes/:id", async (req, res) => {
   try {
     const dish = await database("dishes")
-      .where("genre", req.params.genre)
+      .where("id", req.params.id)
       .select();
 
     if (dish.length) {
-      res.status(200).json({ dish });
+      res.status(200).json(dish);
     } else {
       res.status(404).json({
-        error: `Could not find dish with genre ${req.params.genre}`,
+        error: `Could not find dish with genre ${req.params.id}`,
       });
     }
   } catch (error) {
