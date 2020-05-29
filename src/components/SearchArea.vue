@@ -31,10 +31,10 @@ import axios from "axios";
 export default {
   name: "SearchArea",
   mounted() {
-    this.getDataFromDB();
+    this.getAllDishes();
   },
   methods: {
-    async getDataFromDB() {
+    async getAllDishes() {
       const { data } = await axios.get("/api/dishes");
 
       this.dishes = data.slice().reverse();

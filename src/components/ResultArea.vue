@@ -7,7 +7,6 @@
         v-for="dish in result"
         :dish="dish"
         :key="dish.id"
-        v-on:deleteDish="deleteDish"
       />
     </div>
     <div v-else>No result</div>
@@ -23,18 +22,7 @@ export default {
   components: {
     DishCard: DishCard
   },
-  props: ["result", "genre", "category"],
-  methods: {
-    deleteDish(id) {
-      axios
-        .delete(`/api/dishes/${id}`)
-        .then(() => console.log("deleted"))
-        .catch(error => console.log(error));
-    },
-    updateDish() {
-      this.$emit("updateDish");
-    }
-  }
+  props: ["result", "genre", "category"]
 };
 </script>
 

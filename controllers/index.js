@@ -9,7 +9,7 @@ const serveStatic = require("serve-static");
 const path = require("path");
 
 const PORT = process.env.PORT || 3000;
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cors());
 
 app.use(serveStatic(path.join(__dirname, "../dist")));

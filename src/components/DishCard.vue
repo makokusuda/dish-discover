@@ -3,10 +3,10 @@
     <h3 v-if="!edit" class="name">{{ dish.name }}</h3>
     <input v-else type="text" :placeholder="dish.name" v-model="editName" />
     <div>
-      <button type="button" v-on:click="$emit('deleteDish',dish.id)" v-show="!edit">delete</button>
+      <button type="button" v-on:click="deleteDish(dish.id)" v-show="!edit">delete</button>
       <button type="button" v-on:click="toggleEdit" v-show="!edit">edit</button>
       <button type="button" v-on:click="toggleEdit" v-show="edit">discard changes</button>
-      <button type="button" v-on:click="saveChange(dish.id)" v-show="edit">save</button>
+      <button type="button" v-on:click="updateDish(dish.id)" v-show="edit">save</button>
     </div>
     <img class="image" src="../../public/ingredients.jpg" />
     <div v-if="edit">
@@ -41,7 +41,7 @@ export default {
     };
   },
   methods: {
-    saveChange(id) {
+    updateDish(id) {
       if (!this.editName || !this.editGenre || !this.editCategoty) {
         console.log("error");
       } else {
@@ -53,11 +53,18 @@ export default {
           })
           .then(res => {
             console.log(res.config.data);
+            console.log("updated");
           })
           .then(() => {
             this.toggleEdit();
           });
       }
+    },
+    deleteDish(id) {
+      axios
+        .delete(`/api/dishes/${id}`)
+        .then(() => console.log("deleted"))
+        .catch(error => console.log(error));
     },
     toggleEdit() {
       this.edit = !this.edit;
@@ -65,6 +72,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>
